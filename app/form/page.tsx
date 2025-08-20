@@ -1,5 +1,10 @@
-export default function page() {
+'use client'
+import { FeedbackProvider } from "../context/FeedbackProvider"
+
+export default function Frompage() {
   return (
-    <h1>Assignment 1 Jest</h1>
-  );
+    <FeedbackProvider>
+      
+    </FeedbackProvider>
+  )
 }
