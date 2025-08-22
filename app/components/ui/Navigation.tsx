@@ -5,12 +5,18 @@ export default function Navigation() {
   return (
     <nav data-testid="navigation" className="flex items-center justify-between p-4">
       <Link href="/" aria-label="logo">
-        <span className="font-bold">Logo</span>
+        <img src="/logo.svg" alt="logo" className="font-bold" />
       </Link>
       <div className="flex gap-3">
-        <Link href="/">Home</Link>
-        <Link href="/form">Form</Link>
-        <Link href="/feedbacks">Feedbacks</Link>
+        <Link href="/">
+          <button>Home</button>
+        </Link>
+        <Link href="/form">
+          <button>Form</button>
+        </Link>
+        <Link href="/feedbacks">
+          <button>Feedbacks</button>
+        </Link>
       </div>
     </nav>
   );
