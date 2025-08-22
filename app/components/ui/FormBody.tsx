@@ -1,5 +1,5 @@
 "use client";
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useState } from "react";
 import { v4 as uuid } from "uuid";
 import { useFeedbackContext } from "@/app/context/FeedbackProvider";
 import type { FeedbackItem } from "@/app/utils/types";
@@ -11,39 +11,48 @@ const CATEGORY_OPTIONS = [
   { value: "other", label: "Other" },
 ];
 
+const INITIAL_FORM_STATE = {
+  name: "",
+  email: "",
+  category: "general",
+  subject: "",
+  content: "",
+};
+
 export default function FormBody() {
   const { feedbackList, setFeedbackList } = useFeedbackContext();
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [category, setCategory] = useState("general");
-  const [subject, setSubject] = useState("");
-  const [content, setContent] = useState("");
+  const [formData, setFormData] = useState(INITIAL_FORM_STATE);
 
-  const categoryLabel = useMemo(
-    () => CATEGORY_OPTIONS.find(o => o.value === category)?.label ?? "General",
-    [category]
-  );
+  const getCategoryLabel = (value: string) => 
+    CATEGORY_OPTIONS.find(o => o.value === value)?.label ?? "General";
+
+  const resetForm = () => setFormData(INITIAL_FORM_STATE);
+
+  const updateField = (field: keyof typeof formData) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData(prev => ({ ...prev, [field]: e.target.value }));
+  };
 
   function onSubmit(e: FormEvent) {
     e.preventDefault();
 
     const item: FeedbackItem = {
       id: uuid(),
-      name,
-      email,
-      category: categoryLabel,
-      subject,
-      content,
+      name: formData.name,
+      email: formData.email,
+      category: getCategoryLabel(formData.category),
+      subject: formData.subject,
+      content: formData.content,
       timestamp: new Date().toLocaleString(),
     };
 
     const next = [item, ...(feedbackList ?? [])];
+    
     try {
       localStorage.setItem("feedbacks", JSON.stringify(next));
     } catch {}
-    setFeedbackList(next); // ← array, matchar testen
-
-    setName(""); setEmail(""); setSubject(""); setContent(""); setCategory("general");
+    
+    setFeedbackList(next);
+    resetForm();
   }
 
   return (
@@ -52,8 +61,8 @@ export default function FormBody() {
         Name
         <input
           placeholder="Name"
-          value={name}
-          onChange={e => setName(e.target.value)}
+          value={formData.name}
+          onChange={updateField("name")}
           className="border p-2 w-full"
         />
       </label>
@@ -62,8 +71,8 @@ export default function FormBody() {
         Email
         <input
           placeholder="Email"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
+          value={formData.email}
+          onChange={updateField("email")}
           className="border p-2 w-full"
         />
       </label>
@@ -72,8 +81,8 @@ export default function FormBody() {
       <select
         id="category"
         aria-label="category"
-        value={category}
-        onChange={e => setCategory(e.target.value)}
+        value={formData.category}
+        onChange={updateField("category")}
         className="border p-2"
       >
         {CATEGORY_OPTIONS.map(opt => (
@@ -85,8 +94,8 @@ export default function FormBody() {
         Subject
         <input
           placeholder="Subject"
-          value={subject}
-          onChange={e => setSubject(e.target.value)}
+          value={formData.subject}
+          onChange={updateField("subject")}
           className="border p-2 w-full"
         />
       </label>
@@ -95,8 +104,8 @@ export default function FormBody() {
         Feedback
         <textarea
           placeholder="Your content"
-          value={content}
-          onChange={e => setContent(e.target.value)}
+          value={formData.content}
+          onChange={updateField("content")}
           className="border p-2 w-full min-h-24"
         />
       </label>
