@@ -14,8 +14,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Assignment 1 Jest",
+  title: "Feedback Form",
   description: "May Sunktong",
+  icons: {
+    icon: "./logoform.png",
+  },
 };
 
 export default function RootLayout({
