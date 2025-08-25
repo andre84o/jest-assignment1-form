@@ -9,25 +9,25 @@ import Link from "next/link";
 export default function Header() {
   const [isOpen, setOpen] = useState(false)
   return (
-   <header data-testid="header" className="relative w-full bg-[#e1ccbe] font-bold text-white p-4 flex items-center">
-  <div className="sm:hidden">
+   <header data-testid="header" className="relative w-full bg-[#e1ccbe] font-bold text-white p-4 flex items-center justify-between">
+  <div className="flex-shrink-0">
     <Link href="/">
     <Image
       src="/logoform.png"
       alt="logo"
-      width={80}
-      height={80}
-      className="h-8 w-auto sm:h-10 md:h-12"
-      sizes="(max-width: 640px) 2rem, (max-width: 768px) 2.5rem, 3rem"
+      width={100}
+      height={100}
+      className="h-12 w-auto sm:h-14 md:h-16 lg:h-18"
+      sizes="(max-width: 640px) 3rem, (max-width: 768px) 3.5rem, (max-width: 1024px) 4rem, 4.5rem"
       priority />
       </Link>
   </div>
 
-  <div className="hidden sm:block justify-end w-full">
+  <div className="hidden sm:block">
     <Navigation />
   </div>
 
-  <div className="sm:hidden flex justify-end w-full">
+  <div className="sm:hidden flex items-center">
         <Hamburger toggled={isOpen} toggle={setOpen} />
 
         {isOpen && (
