@@ -15,18 +15,18 @@ export default function Navigation() {
           </Link>
           <div className="flex w-full sm:w-auto flex-col sm:flex-row items-center justify-center sm:justify-end gap-3 sm:gap-4 md:gap-6">
             <Link href="/">
-              <button className=" px-4 py-1 rounded text-white text-sm sm:text-base hover:text-black active:scale-95 transition whitespace-nowrap">
+              <button className=" px-4 py-1 rounded text-white text-sm sm:text-base hover:text-gray-600 hover:scale-110 active:scale-95 transition whitespace-nowrap">
                 Home
               </button>
             </Link>
 
             <Link href="/form">
-              <button className="px-4 py-1 rounded text-white text-sm sm:text-base hover:text-black active:scale-95 transition whitespace-nowrap">
+              <button className="px-4 py-1 rounded text-white text-sm sm:text-base hover:text-gray-600 hover:scale-110 active:scale-95 transition whitespace-nowrap">
                 Form
               </button>
             </Link>
             <Link href="/feedbacks">
-              <button className="px-4 py-1 rounded text-white text-sm sm:text-base hover:text-black active:scale-95 transition whitespace-nowrap">
+              <button className="px-4 py-1 rounded text-white text-sm sm:text-base hover:text-gray-600 hover:scale-110 active:scale-95 transition whitespace-nowrap">
                 Feedbacks
               </button>
             </Link>

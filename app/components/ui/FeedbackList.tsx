@@ -26,18 +26,22 @@ export default function FeedbackList() {
   }
 
   return (
-    <section>
-    <button onClick={erase}>Erase Storage</button>
-    <ul>
-      {loaded.map((f) => (
-        <li key={f.id}>
-          <h3>{f.subject}</h3>
-          <p>{f.content}</p>
-          <p>{f.name}</p>
-          <p>{f.email}</p>
-          <p>{f.category}</p>
-        </li>
-      ))}
-    </ul>
-  </section>
-  )}
+    <section className="text-white">
+      <button onClick={erase} className="text-white p-2 rounded border border-white hover:bg-gray-400 mb-4">
+        Erase Storage
+      </button>
+      <ul className="space-y-4">
+        {loaded.map((f) => (
+          <li key={f.id} className="border-2 rounded border-white shadow text-black">
+            <h3 className="font-bold text-lg">{f.subject}</h3>
+            <p className="mt-2">{f.content}</p>
+            <p className="text-sm mt-1"><strong>Name:</strong> {f.name}</p>
+            <p className="text-sm"><strong>Email:</strong> {f.email}</p>
+            <p className="text-sm"><strong>Category:</strong> {f.category}</p>
+            <p className="text-xs mt-2">{f.timestamp}</p>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}

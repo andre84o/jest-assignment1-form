@@ -23,7 +23,7 @@ export default function Header() {
       </Link>
   </div>
 
-  <div className="hidden sm:block flex justify-end w-full">
+  <div className="hidden sm:block justify-end w-full">
     <Navigation />
   </div>
 

@@ -56,61 +56,62 @@ export default function FormBody() {
   }
 
   return (
-    <form role="form" onSubmit={onSubmit} className="flex flex-col gap-4 max-w-xl">
-      <label>
+    <form role="form" onSubmit={onSubmit} className="flex flex-col gap-4 max-w-xl border-2 p-6 rounded">
+      <label className="text-white">
         Name
         <input
           placeholder="Name"
           value={formData.name}
           onChange={updateField("name")}
-          className="border p-2 w-full"
+          className="border border-white p-2 w-full text-black placeholder:text-white"
         />
       </label>
 
-      <label>
+      <label className="text-white">
         Email
         <input
           placeholder="Email"
           value={formData.email}
           onChange={updateField("email")}
-          className="border p-2 w-full"
+          className="border border-white p-2 w-full text-black placeholder:text-white"
         />
       </label>
 
-      <label htmlFor="category">Category</label>
+      <label htmlFor="category" className="text-white">Category</label>
       <select
         id="category"
         aria-label="category"
         value={formData.category}
         onChange={updateField("category")}
-        className="border p-2"
+        className="border border-white p-2 w-full"
       >
-        {CATEGORY_OPTIONS.map(opt => (
-          <option key={opt.value} value={opt.value}>{opt.label}</option>
+        {CATEGORY_OPTIONS.map(option => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
         ))}
       </select>
 
-      <label>
+      <label className="text-white">
         Subject
         <input
           placeholder="Subject"
           value={formData.subject}
           onChange={updateField("subject")}
-          className="border p-2 w-full"
+          className="border border-white p-2 w-full text-black placeholder:text-white"
         />
       </label>
 
-      <label>
+      <label className="text-white">
         Feedback
         <textarea
           placeholder="Your content"
           value={formData.content}
           onChange={updateField("content")}
-          className="border p-2 w-full min-h-24"
+          className="border border-white p-2 w-full min-h-24 text-black placeholder:text-white"
         />
       </label>
-
-      <button type="submit">Submit</button>
+      <button type="submit" className="text-white border-white p-2 rounded border hover:bg-white hover:text-gray-800">Submit</button>
     </form>
   );
 }
